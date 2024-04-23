@@ -1,7 +1,6 @@
 
 #define led 7
 #define sensor_pin A0
-
 #include "SD.h"
 #define SD_ChipSelectPin 53
 #include "TMRpcm.h"
@@ -12,7 +11,6 @@ TMRpcm tmrpcm1;
 ezButton button1(5);
 int sensor;
 void setup() {
-  // put your setup code here, to run once:
   pinMode(led,OUTPUT);
   pinMode(sensor_pin,INPUT);
   Serial.begin(9600);
@@ -32,7 +30,7 @@ void setup() {
 
 
 void loop() {
-  // put your main code here, to run repeatedly:
+  
   sensor = analogRead(sensor_pin);
   //Serial.println(sensor);
   button1.loop();
