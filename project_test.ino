@@ -13,7 +13,7 @@ LiquidCrystal lcd(12,11,5,4,3,2);
 float total = 0;
 float previous =0;
 void setup() {
-  
+  #Initalizes the Contrast
   analogWrite(6,Contrast);
   Serial.begin(9600);
   lcd.begin(16,2);
@@ -24,12 +24,13 @@ void setup() {
 }
 
 void loop() {
+  // Displays the total amount of money
   lcd.setCursor(0, 0);
   lcd.print("Amount");
   lcd.setCursor(0, 1);
   lcd.print(total);
   
-  // put your main code here, to run repeatedly:
+  // Adds the value amount depending which button is pressed
   if(digitalRead(button1)==LOW)
   {
     Serial.print("Works");
