@@ -13,14 +13,14 @@ LiquidCrystal lcd(12,11,5,4,3,2);
 float total = 0;
 float previous =0;
 void setup() {
-  // put your setup code here, to run once:
+  
   analogWrite(6,Contrast);
   Serial.begin(9600);
   lcd.begin(16,2);
-  /*pinMode(button1,INPUT);
+  pinMode(button1,INPUT);
   pinMode(button2,INPUT);
   pinMode(button3,INPUT);
-  pinMode(button4,INPUT);*/
+  pinMode(button4,INPUT);
 }
 
 void loop() {
@@ -30,14 +30,14 @@ void loop() {
   lcd.print(total);
   
   // put your main code here, to run repeatedly:
-  /*if(digitalRead(button1)==LOW)
+  if(digitalRead(button1)==LOW)
   {
     Serial.print("Works");
     ftotal+= 0.01;
     previous = 0.01;
     delay(500);
-  }*/
-  /*
+  }
+  
   else if(digitalRead(button2)==LOW)
   {
     total+= 0.05;
@@ -78,6 +78,6 @@ void loop() {
   {
     total=0.00;
     delay(500);
-  }*/
+  }
   
 }
