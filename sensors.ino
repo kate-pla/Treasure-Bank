@@ -17,7 +17,6 @@ void setup() {
   tmrpcm1.speakerPin=46;
   button1.setDebounceTime(50);
 
-
   if(!SD.begin(SD_ChipSelectPin))
   {
     Serial.println("SD fail");
@@ -32,10 +31,8 @@ void setup() {
 void loop() {
   
   sensor = analogRead(sensor_pin);
-  //Serial.println(sensor);
   button1.loop();
   int state = button1.getState();
-  
   if(button1.isReleased())
   {
     Serial.println("pressed");
@@ -61,7 +58,6 @@ void loop() {
   }
   else
   {
-
 
     if(SD.exists("test4.wav"))
     {
