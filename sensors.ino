@@ -23,8 +23,17 @@ void setup() {
     Serial.println("SD fail");
     return;
   }
+  if(SD.exists("test2.wav"))
+  {
+    Serial.println("File doesn't exist")
+  }
+  if(SD.exists("test4.wav"))
+  {
+    Serial.println("File doesn't exist")
+  }
   tmrpcm1.setVolume(5);
   pinMode(ledPin,OUTPUT);
+  
 }
   
 
@@ -39,16 +48,12 @@ void loop() {
   if(button1.isReleased())
   {
     Serial.println("pressed");
-    
-    if(SD.exists("test2.wav"))
-    {
-  
-      tmrpcm1.play("test2.wav");
-      // Make sures the sound doesn't stop in the middle
-      while(tmrpcm1.isPlaying())
+
+    tmrpcm1.play("test2.wav");
+    // Make sures the sound doesn't stop in the middle
+    while(tmrpcm1.isPlaying())
     {
       digitalWrite(ledPin,HIGH);
-    }
     }
     // Stops the sound from continuing playing
     if(tmrpcm1.isPlaying())
@@ -66,15 +71,13 @@ void loop() {
   {
     // Since the light detection was less than 300 that means a coin was insereted
     // Sound will start playing and light will turn on
-    if(SD.exists("test4.wav"))
-    {
-  
-      tmrpcm1.play("test4.wav");
-      while(tmrpcm1.isPlaying())
+    
+    tmrpcm1.play("test4.wav");
+    while(tmrpcm1.isPlaying())
     {
       digitalWrite(led,HIGH);
     }
     tmrpcm1.stopPlayback();
-  }
+  
   }
 }
