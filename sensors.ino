@@ -10,6 +10,7 @@
 TMRpcm tmrpcm1;
 ezButton button1(5);
 int sensor;
+int lightThreshold = 300;
 void setup() {
   pinMode(led,OUTPUT);
   pinMode(sensor_pin,INPUT);
@@ -63,7 +64,7 @@ void loop() {
   }
   // Detects when the coins are inserted
   // If the light detection is greater than 300 than that means there is no coin that was inserted
-  if(sensor<300)
+  if(sensor<lightThreshold)
   {
     digitalWrite(led,LOW);
   }
