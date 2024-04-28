@@ -1,14 +1,14 @@
 #include <LiquidCrystal.h>
 int Contrast =75;
 LiquidCrystal lcd(12,11,5,4,3,2);
-#define button1 13
-#define button2 9
-#define button3 8
-#define button4 7
-#define button5 10
-#define button6 1
-#define button7 0
-#define button8 A0
+#define buttonAdd01 13
+#define buttonAdd10 9
+#define buttonAdd25 8
+#define buttonAdd05 7
+#define buttonAdd1 10
+#define buttonAdd5 1
+#define buttonUndo 0
+#define buttonReset A0
 
 float total = 0;
 float previous =0;
@@ -31,7 +31,7 @@ void loop() {
   lcd.print(total);
   
   // Adds the value amount depending which button is pressed
-  if(digitalRead(button1)==LOW)
+  if(digitalRead(buttonAdd01)==LOW)
   {
     Serial.print("Works");
     ftotal+= 0.01;
@@ -39,43 +39,43 @@ void loop() {
     delay(500);
   }
   
-  else if(digitalRead(button2)==LOW)
+  else if(digitalRead(buttonAdd05)==LOW)
   {
     total+= 0.05;
     previous = 0.05;
     delay(500);
   }
-  else if(digitalRead(button3)==LOW)
+  else if(digitalRead(buttonAdd10)==LOW)
   {
     total+= 0.10;
     previous = 0.10;
     delay(500);
   }
-  else if(digitalRead(button4)==LOW)
+  else if(digitalRead(buttonAdd25)==LOW)
   {
     total+= 0.25;
     previous = 0.25;
     delay(500);
   }
-  else if(digitalRead(button5)==LOW)
+  else if(digitalRead(buttonAdd1)==LOW)
   {
     total+= 1.00;
     previous = 1.00;
     delay(500);
   }
-  else if(digitalRead(button6)==LOW)
+  else if(digitalRead(buttonAdd5)==LOW)
   {
     total+= 5.00;
     previous = 5.00;
     delay(500);
   }
-  else if(digitalRead(button7)==LOW)
+  else if(digitalRead(buttonUndo)==LOW)
   {
 
     total -= previous;
     delay(500);
   }
-  else if(analogRead(button8)==LOW)
+  else if(analogRead(buttonReset)==LOW)
   {
     total=0.00;
     delay(500);
