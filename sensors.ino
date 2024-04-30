@@ -10,7 +10,7 @@
 TMRpcm tmrpcm1;
 ezButton button1(5);
 int sensor;
-int lightThreshold = 300;
+int lightThreshold = 850;
 void setup() {
   pinMode(led,OUTPUT);
   pinMode(sensor_pin,INPUT);
@@ -45,6 +45,39 @@ void loop() {
   button1.loop();
   //Gets the button state
   int state = button1.getState();
+  // Detects when the coins are inserted
+  // If the light detection is greater than 850 than that means there is no coin that was inserted
+  
+  if(state == LOW)
+  {
+    if(sensor<lightThreshold)
+    {
+      digitalWrite(led,LOW);
+    }
+    else
+    {
+
+
+      if(SD.exists("coins.wav"))
+      {
+  
+        tmrpcm1.play("coins.wav");
+        while(tmrpcm1.isPlaying())
+        {
+          digitalWrite(led,HIGH);
+          if(button1.isReleased())
+          {
+            tmrpcm1.stopPlayback();
+            digitalWrite(led,LOW);
+
+            break;
+          }
+        }
+        tmrpcm1.stopPlayback();
+      }
+      
+    }
+  }
   // When button is released the sound will start playing
   if(button1.isReleased())
   {
@@ -62,23 +95,5 @@ void loop() {
       tmrpcm1.stopPlayback();
     }
   }
-  // Detects when the coins are inserted
-  // If the light detection is greater than 300 than that means there is no coin that was inserted
-  if(sensor<lightThreshold)
-  {
-    digitalWrite(led,LOW);
-  }
-  else
-  {
-    // Since the light detection was less than 300 that means a coin was insereted
-    // Sound will start playing and light will turn on
-    
-    tmrpcm1.play("test4.wav");
-    while(tmrpcm1.isPlaying())
-    {
-      digitalWrite(led,HIGH);
-    }
-    tmrpcm1.stopPlayback();
-  
-  }
 }
+ 
